@@ -9,48 +9,42 @@ table thead{
 	font-size:90%;
 } 
 
-
-input[type='radio']:after {
+input[type=radio]{
+	display:none;
+  }
+  
+  input[type=radio] + label:before{
+	content: '';
+	display:inline-block;
+	border-radius: 10px;
 	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	top: -2px;
-	left: -2px;
-	position: relative;
+	height:20px;
 	background-color: #d1d3d1;
-	content: '';
-	display: inline-block;
-	visibility: visible;
+	color: #d1d3d1;
 	border: 2px solid white;
-}
-input[type='radio']:checked:after {
-	width: 20px;
-	height: 20px;
-	border-radius: 20px;
-	top: -2px;
-	left: -2px;
-	position: relative;
-	content: '';
-	display: inline-block;
-	visibility: visible;
-	border: 2px solid white;
-}
+	line-height: 15px;
+	text-align: center;
+	font-size:25px;
+	margin-right: 5px;
+	margin-top:5px;
+  }
+  
 
-table tbody td:nth-of-type(2) input[type='radio']:checked:after {
-background-color: black;
-}
-table tbody td:nth-of-type(3) input[type='radio']:checked:after {
-background-color: #fe2625;
-}
-table tbody td:nth-of-type(4) input[type='radio']:checked:after {
-background-color: #fe2625;
-}
-table tbody td:nth-of-type(5) input[type='radio']:checked:after {
-background-color: darkorange;
-}
-table tbody td:nth-of-type(6) input[type='radio']:checked:after {
-background-color: #129b00;
-}
-table tbody td:nth-of-type(7) input[type='radio']:checked:after {
-background-color: #129b00;
-}
+table tbody td:nth-of-type(2) input[type=radio]:checked + label:before{
+	background-color: black;
+	}
+	table tbody td:nth-of-type(3) input[type=radio]:checked + label:before{
+	background-color: #fe2625;
+	}
+	table tbody td:nth-of-type(4) input[type=radio]:checked + label:before{
+	background-color: #fe2625;
+	}
+	table tbody td:nth-of-type(5) input[type=radio]:checked + label:before{
+	background-color: darkorange;
+	}
+	table tbody td:nth-of-type(6) input[type=radio]:checked + label:before{
+	background-color: #129b00;
+	}
+	table tbody td:nth-of-type(7) input[type=radio]:checked + label:before{
+	background-color: #129b00;
+	}
