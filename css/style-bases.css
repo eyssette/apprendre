@@ -46,7 +46,7 @@ table tbody td:nth-of-type(4) input[type='radio']:checked:after {
 background-color: #fe2625;
 }
 table tbody td:nth-of-type(5) input[type='radio']:checked:after {
-background-color: #a97a00;
+background-color: darkorange;
 }
 table tbody td:nth-of-type(6) input[type='radio']:checked:after {
 background-color: #129b00;
