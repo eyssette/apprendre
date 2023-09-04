@@ -27,7 +27,7 @@ javascript:(function() {
     }
   }
   
-  htmlContent += '<script>var eleves = document.getElementsByTagName("div"); var index = 0;  eleves[index].style.display = "block"; var sectionsReponse = document.getElementsByTagName("section"); function montrerNomPrenom(){ sectionsReponse[index].style.display="block"}; function eleveSuivant() { sectionsReponse[index].style.display="none"; eleves[index].style.display = "none"; index = (index + 1) % eleves.length; eleves[index].style.display = "block"; }; function difficile() {eleveSuivant()}; function facile() {eleveSuivant()}; </script>';
+  htmlContent += '<script>var eleves = document.getElementsByTagName("div"); var index = 0;  eleves[index].style.display = "block"; var sectionsReponse = document.getElementsByTagName("section"); function montrerNomPrenom(){ sectionsReponse[index].style.display="block"}; function eleveSuivant() { sectionsReponse[index].style.display="none"; eleves[index].style.display = "none"; index = (index + 1) % eleves.length; eleves[index].style.display = "block"; }; function difficile() {eleveSuivant()}; function facile() {eleveSuivant()}; window.addEventListener("keydown", function (event) { if (event.keyCode === 13) {montrerNomPrenom();} if (event.keyCode === 37) { difficile(); } if (event.keyCode === 39) { facile(); }  });</script>';
   htmlContent += '</body></html>';
   var newWindow = window.open();
   newWindow.document.open();
