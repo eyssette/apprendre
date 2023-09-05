@@ -1,21 +1,20 @@
 javascript:(function() {
-  var images = document.getElementsByTagName('img');
+  const images = document.getElementsByTagName('img');
   var htmlContent = '<html><head><title>Images de la Page</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;}</style><body>';
   
   for (var i = 0; i < images.length; i++) {
-    var image = images[i];
-    var imageSrc = image.src;
-    var imageAlt = image.alt;
+    const image = images[i];
+    const imageSrc = image.src;
     if (!image.alt ) {
-      var srcSansParametres = imageSrc.split("?")[0];
-      var indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
-      var nomPrenom = decodeURIComponent(srcSansParametres.substring(indexDerniereBarreOblique + 1).replace(".jpg",""));
-	  var index = nomPrenom.search(/[a-zà-ÿ]/);
-	  var partiePrenom = nomPrenom.substring(index-1);
-	  var partieNom = nomPrenom.substring(0, index-1);
-      var nom = partieNom.replaceAll('_',' ');
-      var prenom = partiePrenom.replaceAll('_',' ');
-      var imageTitle = prenom +' '+nom;
+      const srcSansParametres = imageSrc.split("?")[0];
+      const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
+      const nomPrenom = decodeURIComponent(srcSansParametres.substring(indexDerniereBarreOblique + 1).replace(".jpg",""));
+	  const indexPremiereMinuscule = nomPrenom.search(/[a-zà-ÿ]/);
+	  const partiePrenom = nomPrenom.substring(indexPremiereMinuscule-1);
+	  const partieNom = nomPrenom.substring(0, indexPremiereMinuscule-1);
+      const nom = partieNom.replaceAll('_',' ');
+      const prenom = partiePrenom.replaceAll('_',' ');
+      const imageTitle = prenom +' '+nom;
       if (imageSrc) {
         htmlContent += '<div>';
         htmlContent += '<img src="' + imageSrc + '" /><br>';
@@ -29,7 +28,7 @@ javascript:(function() {
   htmlContent += '<footer>Bravo, vous connaissez tous les élèves de votre classe !</footer>';
   htmlContent += '<script>var end = false; var eleves = document.getElementsByTagName("div"); var index = 0; var show = false; var indexElevesFaciles=[]; eleves[index].style.display = "block"; var sectionsReponse = document.getElementsByTagName("section"); function montrerNomPrenom(){ sectionsReponse[index].style.display="block"; show = true}; function eleveSuivant() {do {sectionsReponse[index].style.display="none"; eleves[index].style.display = "none"; index = (index + 1) % eleves.length;} while (indexElevesFaciles.includes(index)); eleves[index].style.display = "block"; }; function difficile() {show = false; eleveSuivant()}; function facile() {show = false; indexElevesFaciles.push(index); if (indexElevesFaciles.length == eleves.length) {end = true; var footer = document.querySelector("footer"); eleves[index].style.display = "none"; footer.style.display = "flex";} else {eleveSuivant()}}; window.addEventListener("keydown", function (event) { if (event.keyCode === 13 && end == false) {montrerNomPrenom();} if (event.keyCode === 37 && show == true) { difficile(); } if (event.keyCode === 39  && show == true) { facile(); }  });</script>';
   htmlContent += '</body></html>';
-  var newWindow = window.open();
+  const newWindow = window.open();
   newWindow.document.open();
   newWindow.document.write(htmlContent);
   newWindow.document.close();
