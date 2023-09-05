@@ -4,7 +4,7 @@ javascript:(function() {
   
   for (var i = 0; i < images.length; i++) {
     const image = images[i];
-    const imageSrc = image.src;
+    const imageSrc = image.dataset.src;
     if (!image.alt ) {
       const srcSansParametres = imageSrc.split("?")[0];
       const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
@@ -15,14 +15,12 @@ javascript:(function() {
       const nom = partieNom.replaceAll('_',' ');
       const prenom = partiePrenom.replaceAll('_',' ');
       const imageTitle = prenom +' '+nom;
-      if (imageSrc) {
         htmlContent += '<div>';
         htmlContent += '<img src="' + imageSrc + '" /><br>';
         htmlContent += '<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
         htmlContent += '<section><span>' + imageTitle + '</span><br>';
 		htmlContent += '<button onclick="difficile()">Difficile</button>';
 		htmlContent += '<button onclick="facile()">Facile</button></section></div>';
-      }
     }
   }
   htmlContent += '<footer>Bravo, vous connaissez tous les élèves de votre classe !</footer>';
