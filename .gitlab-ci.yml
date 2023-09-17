@@ -2,6 +2,9 @@ pages:
   script:
     - mkdir .public
     - cp pandoc/style.css .public/
+    - cp -r * .public
+    - mkdir .public/css
+    - cp css/* .public/css
     - mv .public public
     - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
   artifacts:
