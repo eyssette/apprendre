@@ -16,7 +16,7 @@ Si on dispose des photos avant même le premier cours, on peut ainsi arriver en 
 
 ## 2/ Afficher le trombinoscope de ses élèves sur Pronote (version en ligne)
 
-Cliquer sur “Mes données” / “Classes/élèves” / “Trombinoscope”
+Cliquez sur “Mes données” / “Classes/élèves” / “Trombinoscope”
 
 ![](https://minio.apps.education.fr/codimd-prod/uploads/upload_1ce9929a1de523fb19b9060d077a3275.png)
 
