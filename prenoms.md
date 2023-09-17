@@ -40,3 +40,5 @@ Si c'était difficile, cliquez sur “Difficile”. La photo reste dans la liste
 - Raccourci clavier : &rarr; (flèche droite)
 
 Tant qu'il reste des photos dans la liste, l'outil parcourt la liste jusqu'à ce que vous ayez retrouvé tous les prénoms des élèves.
+
+![](https://minio.apps.education.fr/codimd-prod/uploads/upload_8b511ff9285f81797dac501d4f99ac38.png)
