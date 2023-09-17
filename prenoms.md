@@ -34,10 +34,10 @@ Quand vous pensez avoir retrouvé le prénom et le nom de l'élève, cliquez sur
 ![](https://minio.apps.education.fr/codimd-prod/uploads/upload_b8c93f1e7b4242fcc8bc1ccbea4e8a27.png)
 
 Si c'était facile, cliquez sur “Facile”. La photo de l'élève sera alors sortie de la liste.
-- Raccourci clavier : &larr; (flèche gauche)
+- Raccourci clavier : &rarr; (flèche droite)
 
 Si c'était difficile, cliquez sur “Difficile”. La photo reste dans la liste.
-- Raccourci clavier : &rarr; (flèche droite)
+- Raccourci clavier : &larr; (flèche gauche)
 
 Tant qu'il reste des photos dans la liste, l'outil parcourt la liste jusqu'à ce que vous ayez retrouvé tous les prénoms des élèves.
 
