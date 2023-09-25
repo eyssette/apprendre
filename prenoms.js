@@ -2,7 +2,7 @@ javascript: (function () {
 	const url = window.location.href;
 	const images = document.getElementsByTagName("img");
 	var imagesArray = Array.from(images);
-	if (url.indexOf("index-education.net") === -1) {
+	if (url.indexOf("pronote") === -1) {
 		alert(
 			"Attention, cet outil ne fonctionne que sur une page Pronote\nOuvrez Pronote en ligne, puis allez dans Mes données / Classes/élèves / Trombinoscope"
 		);
