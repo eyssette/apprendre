@@ -28,7 +28,19 @@ Choisissez la classe et cliquez sur votre nouveau favori “Apprendre les préno
 
 ## 3/ Apprendre les prénoms
 
-L'outil affiche une photo à la fois.
+### Choisir l'ordre de présentation
+
+L'outil ouvre un popup et vous propose d'apprendre soit les prénoms dans l'ordre aléatoire (ordre par défaut : cliquez sur OK ou appuyez sur Entrée), soit dans l'ordre alphabétique (cliquez sur Annuler ou appuyez sur Esc).
+
+```warning
+Attention : pour que l'outil fonctionne, il faut qu'on puisse voir toutes les photos des élèves sur l'écran, et si vous mettez du temps à faire votre choix de l'ordre de présentation, votre navigateur va probablement bloquer l'ouverture de la page des photos (il faudra alors soit relancer l'outil et répondre plus vite, soit accepter les popups).
+``````
+
+![](https://minio.apps.education.fr/codimd-prod/uploads/upload_cf1867318a5f5f5a8514ff50f56442f2.png)
+
+### S'entraîner à mémoriser les prénoms
+
+Une page s'ouvre et l'outil affiche une photo à la fois.
 
 ![](https://minio.apps.education.fr/codimd-prod/uploads/upload_60b95ece9dc0e029919628f7c3157861.png)
 
