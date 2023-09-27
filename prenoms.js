@@ -18,7 +18,7 @@ javascript: (function () {
 
 	function generateContent(imgArray) {
 		var htmlContent =
-			"<html><head><title>Images de la Page</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;}</style><body>";
+			"<html><head><title>Images de la Page</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}</style><body>";
 
 		for (var i = 0; i < images.length; i++) {
 			const image = imgArray[i];
@@ -39,9 +39,13 @@ javascript: (function () {
 				const imageTitle = prenom + " " + nom;
 				htmlContent += "<div>";
 				htmlContent += '<img src="' + imageSrc + '" /><br>';
-				htmlContent +=
-					'<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
-				htmlContent += "<section><span>" + imageTitle + "</span><br>";
+				if (Array.from(image.classList).includes("ie-imgviewer")) {
+					htmlContent +=
+						'<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
+					htmlContent += "<section>" + imageTitle + "<br>";
+				} else {
+					htmlContent += "<section class=\"noPhotos\"><b>Pas de photo disponible !</b><br>" + imageTitle + "<br>";
+				};
 				htmlContent += '<button onclick="difficile()">Difficile</button>';
 				htmlContent +=
 					'<button onclick="facile()">Facile</button></section></div>';
@@ -50,7 +54,7 @@ javascript: (function () {
 		htmlContent +=
 			"<footer>Bravo, vous connaissez tous les élèves de votre classe !</footer>";
 		htmlContent +=
-			'<script>var end = false; var eleves = document.getElementsByTagName("div"); var index = 0; var show = false; var indexElevesFaciles=[]; eleves[index].style.display = "block"; var sectionsReponse = document.getElementsByTagName("section"); function montrerNomPrenom(){ sectionsReponse[index].style.display="block"; show = true}; function eleveSuivant() {do {sectionsReponse[index].style.display="none"; eleves[index].style.display = "none"; index = (index + 1) % eleves.length;} while (indexElevesFaciles.includes(index)); eleves[index].style.display = "block"; }; function difficile() {show = false; eleveSuivant()}; function facile() {show = false; indexElevesFaciles.push(index); if (indexElevesFaciles.length == eleves.length) {end = true; var footer = document.querySelector("footer"); eleves[index].style.display = "none"; footer.style.display = "flex";} else {eleveSuivant()}}; window.addEventListener("keydown", function (event) { if (event.keyCode === 13 && end == false) {montrerNomPrenom();} if (event.keyCode === 37 && show == true) { difficile(); } if (event.keyCode === 39  && show == true) { facile(); }  });</script>';
+			'<script>var end = false; var eleves = document.getElementsByTagName("div"); var index = 0; var show = false; var indexElevesFaciles=[]; eleves[index].style.display = "block"; var sectionsReponse = document.getElementsByTagName("section"); function montrerNomPrenom(){ sectionsReponse[index].style.display="block"; show = true}; function eleveSuivant() {do {sectionsReponse[index].style.display="none"; eleves[index].style.display = "none"; index = (index + 1) % eleves.length;} while (indexElevesFaciles.includes(index)); eleves[index].style.display = "block"; }; function difficile() {show = false; eleveSuivant()}; function facile() {show = false; indexElevesFaciles.push(index); if (indexElevesFaciles.length == eleves.length) {end = true; var footer = document.querySelector("footer"); eleves[index].style.display = "none"; footer.style.display = "flex";} else {eleveSuivant()}}; window.addEventListener("keydown", function (event) { if (event.keyCode === 13 && end == false) {montrerNomPrenom();} if (event.keyCode === 37 && (show == true || eleves[index].childNodes[2].className=="noPhotos")) { difficile(); } if (event.keyCode === 39  && (show == true || eleves[index].childNodes[2].className=="noPhotos")) { facile(); }  });</script>';
 		htmlContent += "</body></html>";
 		return htmlContent;
 	}
