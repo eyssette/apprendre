@@ -18,7 +18,7 @@ javascript: (function () {
 
 	function generateContent(imgArray) {
 		var htmlContent =
-			"<html><head><title>Images de la Page</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}</style><body>";
+			"<!doctype html><html><head><title>Images de la Page</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}</style><body>";
 
 		for (var i = 0; i < imgArray.length; i++) {
 			const image = imgArray[i];
