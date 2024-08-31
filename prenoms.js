@@ -1,6 +1,7 @@
 javascript: (function () {
 	const url = window.location.href;
-	const images = document.getElementsByTagName("img");
+	const mainElement = document.querySelector('div[role="main"]')
+	const images = mainElement.getElementsByTagName("img");
 	var imagesArray = Array.from(images);
 	if (url.indexOf("pronote") === -1) {
 		alert(
@@ -23,7 +24,7 @@ javascript: (function () {
 		for (var i = 0; i < imgArray.length; i++) {
 			const image = imgArray[i];
 			const imageSrc = image.dataset.src;
-			if (!image.alt) {
+			if (image.alt.includes('Photo de')) {
 				const srcSansParametres = imageSrc.split("?")[0];
 				const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
 				const nomPrenom = decodeURIComponent(
