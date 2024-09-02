@@ -58,3 +58,9 @@ Si c'était difficile, cliquez sur “Difficile”. La photo reste dans la liste
 Tant qu'il reste des photos dans la liste, l'outil parcourt la liste jusqu'à ce que vous ayez retrouvé tous les prénoms des élèves.
 
 ![](https://minio.apps.education.fr/codimd-prod/uploads/upload_8b511ff9285f81797dac501d4f99ac38.png)
+
+## Un outil libre et gratuit
+
+Ce script est diffusé sous licence libre. N'hésitez pas à le modifier pour qu'il fonctionne avec une autre application. Les [sources](https://forge.apps.education.fr/eyssette/apprendrehttps://forge.apps.education.fr/eyssette/apprendre/-/blob/main/prenoms.js?ref_type=heads) sont sur la Forge des Communs Numériques Éducatifs.
+
+Si vous avez un problème ou une demande d'évolution de l'outil, n'hésitez pas à me contacter, en utilisant de préférence les “[tickets](https://forge.apps.education.fr/eyssette/apprendre/-/issues)”. Vous pouvez sinon me contacter via les [réseaux sociaux](https://eyssette.forge.apps.education.fr).
