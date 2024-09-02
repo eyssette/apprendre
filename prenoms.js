@@ -38,15 +38,15 @@ javascript: (function () {
         const nom = partieNom.replaceAll("_", " ");
         const prenom = partiePrenom.replaceAll("_", " ");
         const imageTitle = prenom + " " + nom;
-        htmlContent += "<div>";
+        htmlContent += "<div class=\"eleve\">";
         htmlContent += '<img src="' + imageSrc + '" /><br>';
         if (Array.from(image.classList).includes("ie-imgviewer")) {
           htmlContent +=
             '<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
-          htmlContent += "<section>" + imageTitle + "<br>";
+          htmlContent += "<section class=\"sectionReponse\">" + imageTitle + "<br>";
         } else {
           htmlContent +=
-            '<section class="noPhotos"><b>Pas de photo disponible !</b><br>' +
+            '<section class="sectionReponse noPhotos"><b>Pas de photo disponible !</b><br>' +
             imageTitle +
             "<br>";
         }
@@ -63,10 +63,10 @@ javascript: (function () {
       let show = false;
       let indexElevesFaciles = [];
 
-      const eleves = document.getElementsByTagName("div");
+      const eleves = document.querySelectorAll(".eleve");
       eleves[index].style.display = "block";
 
-      const sectionsReponse = document.getElementsByTagName("section");
+      const sectionsReponse = document.querySelectorAll(".sectionReponse");
 
       function montrerNomPrenom() {
         sectionsReponse[index].style.display = "block";
@@ -74,14 +74,11 @@ javascript: (function () {
       }
 
       function eleveSuivant() {
-        do {
+		do {
           sectionsReponse[index].style.display = "none";
           eleves[index].style.display = "none";
-          index++;
-          if (index >= eleves.length) {
-            index = 0;
-          }
-        } while (indexElevesFaciles.includes(index));
+          index = (index + 1) % eleves.length;
+        } while (indexElevesFaciles.includes(index) && index < eleves.length);
         eleves[index].style.display = "block";
       }
       function difficile() {
