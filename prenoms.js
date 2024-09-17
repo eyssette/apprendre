@@ -5,6 +5,7 @@
   let isSourceOK = false;
   let isPhotoStudent;
   let isPhotoStudentOK;
+  let isConditionNumberPhotosOK;
   let imageSource;
   let nameStudentFromImageElement;
   if (url.indexOf("pronote") > -1) {
@@ -16,6 +17,7 @@
     isPhotoStudentOK = (image) => {
       return Array.from(image.classList).includes("ie-imgviewer");
     };
+    isConditionNumberPhotosOK = imagesArray.length < 3 ? true : false;
     imageSource = (image) => {
       return image.dataset.src;
     };
@@ -38,13 +40,14 @@
   }
   if (url.indexOf("moodle") > -1) {
     isSourceOK = true;
-    images = mainElement.querySelectorAll("th img");
+    images = document.body.querySelectorAll("th img");
     isPhotoStudent = (image) => {
-      return image.classList.includes("userpicture");
+      return image.classList.contains("userpicture");
     };
     isPhotoStudentOK = (image) => {
       return true;
     };
+    isConditionNumberPhotosOK = true;
     imageSource = (image) => {
       return image.src;
     };
@@ -60,7 +63,7 @@
     return;
   } else {
     imagesArray = Array.from(images);
-    if (imagesArray.length < 3) {
+    if (!isConditionNumberPhotosOK) {
       alert(
         "Pour que l'outil fonctionne, il faut aller dans Mes données / Classes/élèves / Trombinoscope, puis sélectionner une classe"
       );
