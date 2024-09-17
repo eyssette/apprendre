@@ -179,7 +179,7 @@
 
   if (
     window.confirm(
-      'Apprendre les prénoms :\n- Par ordre aléatoire ² clic sur OK (ou touche "Enter").\n- Par ordre alphabétique → clic sur Annuler (ou touche "Esc")\n\nAttention, pour que l\'outil fonctionne, il faut que toutes les photos des élèves soient visibles sur la page. \n\nVotre navigateur bloquera l\'outil si vous mettez trop de temps à cliquer : relancez-le ou autorisez les pop-up'
+      'Apprendre les prénoms :\n- Par ordre aléatoire → clic sur OK (ou touche "Enter").\n- Par ordre alphabétique → clic sur Annuler (ou touche "Esc")\n\nAttention, pour que l\'outil fonctionne, il faut que toutes les photos des élèves soient visibles sur la page. \n\nVotre navigateur bloquera l\'outil si vous mettez trop de temps à cliquer : relancez-le ou autorisez les pop-up'
     )
   ) {
     shuffleArray(imagesArray);
