@@ -1,14 +1,65 @@
-javascript: (function () {
+(function () {
   const url = window.location.href;
-  const mainElement = document.querySelector('div[role="main"]');
-  const images = mainElement.getElementsByTagName("img");
-  var imagesArray = Array.from(images);
-  if (url.indexOf("pronote") === -1) {
+  let images;
+  let imagesArray;
+  let isSourceOK = false;
+  let isPhotoStudent;
+  let isPhotoStudentOK;
+  let imageSource;
+  let nameStudentFromImageElement;
+  if (url.indexOf("pronote") > -1) {
+    isSourceOK = true;
+    images = document.body.querySelectorAll('div[role="main"] img');
+    isPhotoStudent = (image) => {
+      return image.alt.includes("Photo de");
+    };
+    isPhotoStudentOK = (image) => {
+      return Array.from(image.classList).includes("ie-imgviewer");
+    };
+    imageSource = (image) => {
+      return image.dataset.src;
+    };
+    nameStudentFromImageElement = (image) => {
+      const imageSrc = imageSource(image);
+      const srcSansParametres = imageSrc.split("?")[0];
+      const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
+      const nomPrenom = decodeURIComponent(
+        srcSansParametres
+          .substring(indexDerniereBarreOblique + 1)
+          .replace(".jpg", "")
+      );
+      const indexPremiereMinuscule = nomPrenom.search(/[a-zà-ÿ]/);
+      const partiePrenom = nomPrenom.substring(indexPremiereMinuscule - 1);
+      const partieNom = nomPrenom.substring(0, indexPremiereMinuscule - 1);
+      const nom = partieNom.replaceAll("_", " ");
+      const prenom = partiePrenom.replaceAll("_", " ");
+      return prenom + " " + nom;
+    };
+  }
+  if (url.indexOf("moodle") > -1) {
+    isSourceOK = true;
+    images = mainElement.querySelectorAll("th img");
+    isPhotoStudent = (image) => {
+      return image.classList.includes("userpicture");
+    };
+    isPhotoStudentOK = (image) => {
+      return true;
+    };
+    imageSource = (image) => {
+      return image.src;
+    };
+    nameStudentFromImageElement = (image) => {
+      return image.parentNode.textContent
+    }
+  }
+
+  if (isSourceOK == false) {
     alert(
-      "Attention, cet outil ne fonctionne que sur une page Pronote\nOuvrez Pronote en ligne, puis allez dans Mes données / Classes/élèves / Trombinoscope"
+      "Attention, cet outil ne fonctionne que sur certains sites : \nsur Pronote, Ouvrez Pronote en ligne, puis allez dans Mes données / Classes/élèves / Trombinoscope"
     );
     return;
   } else {
+    imagesArray = Array.from(images);
     if (imagesArray.length < 3) {
       alert(
         "Pour que l'outil fonctionne, il faut aller dans Mes données / Classes/élèves / Trombinoscope, puis sélectionner une classe"
@@ -23,31 +74,20 @@ javascript: (function () {
 
     for (var i = 0; i < imgArray.length; i++) {
       const image = imgArray[i];
-      const imageSrc = image.dataset.src;
-      if (image.alt.includes("Photo de")) {
-        const srcSansParametres = imageSrc.split("?")[0];
-        const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
-        const nomPrenom = decodeURIComponent(
-          srcSansParametres
-            .substring(indexDerniereBarreOblique + 1)
-            .replace(".jpg", "")
-        );
-        const indexPremiereMinuscule = nomPrenom.search(/[a-zà-ÿ]/);
-        const partiePrenom = nomPrenom.substring(indexPremiereMinuscule - 1);
-        const partieNom = nomPrenom.substring(0, indexPremiereMinuscule - 1);
-        const nom = partieNom.replaceAll("_", " ");
-        const prenom = partiePrenom.replaceAll("_", " ");
-        const imageTitle = prenom + " " + nom;
-        htmlContent += "<div class=\"eleve\">";
+      if (isPhotoStudent(image)) {
+        const imageSrc = imageSource(image);
+        const nameStudent = nameStudentFromImageElement(image);
+        htmlContent += '<div class="eleve">';
         htmlContent += '<img src="' + imageSrc + '" /><br>';
-        if (Array.from(image.classList).includes("ie-imgviewer")) {
+        if (isPhotoStudentOK(image)) {
           htmlContent +=
             '<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
-          htmlContent += "<section class=\"sectionReponse\">" + imageTitle + "<br>";
+          htmlContent +=
+            '<section class="sectionReponse">' + nameStudent + "<br>";
         } else {
           htmlContent +=
             '<section class="sectionReponse noPhotos"><b>Pas de photo disponible !</b><br>' +
-            imageTitle +
+            nameStudent +
             "<br>";
         }
         htmlContent += '<button onclick="difficile()">Difficile</button>';
@@ -139,7 +179,7 @@ javascript: (function () {
 
   if (
     window.confirm(
-      'Apprendre les prénoms :\n- Par ordre aléatoire → clic sur OK (ou touche "Enter").\n- Par ordre alphabétique → clic sur Annuler (ou touche "Esc")\n\nAttention, pour que l\'outil fonctionne, il faut que toutes les photos des élèves soient visibles sur la page. \n\nVotre navigateur bloquera l\'outil si vous mettez trop de temps à cliquer : relancez-le ou autorisez les pop-up'
+      'Apprendre les prénoms :\n- Par ordre aléatoire ² clic sur OK (ou touche "Enter").\n- Par ordre alphabétique → clic sur Annuler (ou touche "Esc")\n\nAttention, pour que l\'outil fonctionne, il faut que toutes les photos des élèves soient visibles sur la page. \n\nVotre navigateur bloquera l\'outil si vous mettez trop de temps à cliquer : relancez-le ou autorisez les pop-up'
     )
   ) {
     shuffleArray(imagesArray);
