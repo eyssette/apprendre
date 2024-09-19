@@ -49,12 +49,33 @@
 		isPhotoStudentOK = (image) => {
 			return true;
 		};
-		isConditionNumberPhotosOK = true;
+		isConditionNumberPhotosOK = (imagesArray) => {
+			return true;
+		};
 		imageSource = (image) => {
 			return image.src;
 		};
 		nameStudentFromImageElement = (image) => {
 			return image.parentNode.textContent;
+		};
+	}
+	if (url.indexOf("ecoledirecte") > -1) {
+		isSourceOK = true;
+		images = document.body.querySelectorAll(".panel-eleve img");
+		isPhotoStudent = (image) => {
+			return image.alt.includes("élève");
+		};
+		isPhotoStudentOK = (image) => {
+			return image.src.includes("eleve") ? false : true;
+		};
+		isConditionNumberPhotosOK = (imagesArray) => {
+			return true;
+		};
+		imageSource = (image) => {
+			return image.src;
+		};
+		nameStudentFromImageElement = (image) => {
+			return image.parentNode.querySelector("p").textContent;
 		};
 	}
 
@@ -75,7 +96,7 @@
 
 	function generateContent(imgArray) {
 		var htmlContent =
-			"<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, height=device-height, initial-scale=1.0\"></meta><title>Apprendre les prénoms</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}img{height:350px;}</style><body>";
+			'<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"></meta><title>Apprendre les prénoms</title></head><style>div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}img{height:350px;}</style><body>';
 
 		for (var i = 0; i < imgArray.length; i++) {
 			const image = imgArray[i];
