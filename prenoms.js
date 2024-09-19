@@ -38,7 +38,7 @@
       return prenom + " " + nom;
     };
   }
-  if (url.indexOf("moodle") > -1) {
+  if (url.indexOf("moodle") > -1 || url.indexOf("magistere") > -1) {
     isSourceOK = true;
     images = document.body.querySelectorAll("th img");
     isPhotoStudent = (image) => {

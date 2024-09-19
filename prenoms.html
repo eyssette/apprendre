@@ -14,11 +14,16 @@
 		<title>Apprendre les prénoms de ses élèves</title>
 		<style>
 			code{white-space: pre-wrap;}
-   span.smallcaps{font-variant: small-caps;}
-   span.underline{text-decoration: underline;}
-   div.column{display: inline-block; vertical-align: top; width: 50%;}
-   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-   ul.task-list{list-style: none;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 		</style>
 				<link rel="stylesheet" href="pandoc/style.css" />
 		  		<!--[if lt IE 9]>
@@ -31,46 +36,94 @@
 		 		<header id="title-block-header">
 			<h1 class="title">Apprendre les prénoms de ses élèves</h1>
 			   		</header>
-		  <p>Il est essentiel de connaître très rapidement les prénoms de ses élèves.</p>
+		  <p>Il est essentiel de connaître très rapidement les prénoms de ses
+élèves.</p>
 <ul>
-<li>Les élèves sentent qu’ils sont respectés en tant que personne et cela crée tout de suite un climat de confiance.</li>
-<li>La gestion de classe en cas de problème est beaucoup plus facile.</li>
+<li>Les élèves sentent qu’ils sont respectés en tant que personne et
+cela crée tout de suite un climat de confiance.</li>
+<li>La gestion de classe en cas de problème est beaucoup plus
+facile.</li>
 </ul>
-<p>Je propose ici un outil qui permet à partir des trombinoscopes sur Pronote (version en ligne) de mémoriser plus facilement les prénoms de ses élèves.</p>
-<p>Si on dispose des photos avant même le premier cours, on peut ainsi arriver en classe en connaissant déjà au moins une bonne partie des élèves, ce qui les surprend souvent de manière très <span style='white-space:nowrap'>positive&thinsp;!</span></p>
-<h2 id="comment-ça-marche">Comment ça <span style='white-space:nowrap'>marche&thinsp;?</span></h2>
-<p>L’outil proposé est un “bookmarklet” qui ne fonctionne que si vous le mettez dans un favori afin de pouvoir cliquer dessus quand vous serez sur un trombinoscope de Pronote.</p>
+<p>Je propose ici un outil qui permet à partir des trombinoscopes sur
+Pronote (version en ligne) de mémoriser plus facilement les prénoms de
+ses élèves.</p>
+<p>Si on dispose des photos avant même le premier cours, on peut ainsi
+arriver en classe en connaissant déjà au moins une bonne partie des
+élèves, ce qui les surprend souvent de manière très
+<span style='white-space:nowrap'>positive&thinsp;!</span></p>
+<h2 id="comment-ça-marche">Comment ça
+<span style='white-space:nowrap'>marche&thinsp;?</span></h2>
+<p>L’outil proposé est un “bookmarklet” qui ne fonctionne que si vous le
+mettez dans un favori afin de pouvoir cliquer dessus quand vous serez
+sur un trombinoscope de Pronote.</p>
 <h2 id="créer-un-nouveau-favori">1/ Créer un nouveau favori</h2>
-<p>Affichez la barre de vos favoris et glisser-déposer le lien ci-dessous dans vos <span style='white-space:nowrap'>favoris&thinsp;:</span> <a href="javascript:!function(){const e=window.location.href;let n,o,t,s,l,i,r=!1;if(e.indexOf(&quot;pronote&quot;)&gt;-1&amp;&amp;(r=!0,n=document.body.querySelectorAll(&apos;div[role=&quot;main&quot;] img&apos;),t=e=&gt;e.alt.includes(&quot;Photo de&quot;),s=e=&gt;Array.from(e.classList).includes(&quot;ie-imgviewer&quot;),l=e=&gt;e.dataset.src,i=e=&gt;{const n=l(e).split(&quot;?&quot;)[0],o=n.lastIndexOf(&quot;/&quot;),t=decodeURIComponent(n.substring(o+1).replace(&quot;.jpg&quot;,&quot;&quot;)),s=t.search(/[a-z&agrave;-&yuml;]/),i=t.substring(s-1),r=t.substring(0,s-1).replaceAll(&quot;_&quot;,&quot; &quot;);return i.replaceAll(&quot;_&quot;,&quot; &quot;)+&quot; &quot;+r}),e.indexOf(&quot;moodle&quot;)&gt;-1&amp;&amp;(r=!0,n=mainElement.querySelectorAll(&quot;th img&quot;),t=e=&gt;e.classList.includes(&quot;userpicture&quot;),s=e=&gt;!0,l=e=&gt;e.src,i=e=&gt;e.parentNode.textContent),0==r)return void alert(&quot;Attention, cet outil ne fonctionne que sur certains sites : \nsur Pronote, Ouvrez Pronote en ligne, puis allez dans Mes donn&eacute;es / Classes/&eacute;l&egrave;ves / Trombinoscope&quot;);if(o=Array.from(n),o.length&lt;3)return void alert(&quot;Pour que l&apos;outil fonctionne, il faut aller dans Mes donn&eacute;es / Classes/&eacute;l&egrave;ves / Trombinoscope, puis s&eacute;lectionner une classe&quot;);window.confirm(&apos;Apprendre les pr&eacute;noms :\n- Par ordre al&eacute;atoire &rarr; clic sur OK (ou touche &quot;Enter&quot;).\n- Par ordre alphab&eacute;tique &rarr; clic sur Annuler (ou touche &quot;Esc&quot;)\n\nAttention, pour que l\&apos;outil fonctionne, il faut que toutes les photos des &eacute;l&egrave;ves soient visibles sur la page. \n\nVotre navigateur bloquera l\&apos;outil si vous mettez trop de temps &agrave; cliquer : relancez-le ou autorisez les pop-up&apos;)&amp;&amp;function(e){for(let n=e.length-1;n&gt;0;n--){const o=Math.floor(Math.random()*(n+1));[e[n],e[o]]=[e[o],e[n]]}}(o);!function(e){var n=window.open();n&amp;&amp;!n.closed&amp;&amp;function(e,n){e.document.open(),e.document.write(n),e.document.close()}(n,e)}(function(e){for(var n=&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Images de la Page&lt;/title&gt;&lt;/head&gt;&lt;style&gt;div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}&lt;/style&gt;&lt;body&gt;&quot;,o=0;o&lt;e.length;o++){const r=e[o];if(t(r)){const e=l(r),o=i(r);n+=&apos;&lt;div class=&quot;eleve&quot;&gt;&apos;,n+=&apos;&lt;img src=&quot;&apos;+e+&apos;&quot; /&gt;&lt;br&gt;&apos;,s(r)?(n+=&apos;&lt;button onclick=&quot;montrerNomPrenom()&quot;&gt;Montrer la r&eacute;ponse&lt;/button&gt;&apos;,n+=&apos;&lt;section class=&quot;sectionReponse&quot;&gt;&apos;+o+&quot;&lt;br&gt;&quot;):n+=&apos;&lt;section class=&quot;sectionReponse noPhotos&quot;&gt;&lt;b&gt;Pas de photo disponible !&lt;/b&gt;&lt;br&gt;&apos;+o+&quot;&lt;br&gt;&quot;,n+=&apos;&lt;button onclick=&quot;difficile()&quot;&gt;Difficile&lt;/button&gt;&apos;,n+=&apos;&lt;button onclick=&quot;facile()&quot;&gt;Facile&lt;/button&gt;&lt;/section&gt;&lt;/div&gt;&apos;}}return n+=&quot;&lt;footer&gt;Bravo, vous connaissez tous les &eacute;l&egrave;ves de votre classe !&lt;/footer&gt;&quot;,n+=&apos;&lt;script&gt;\n      let end = false;\n      let index = 0;\n      let show = false;\n      let indexElevesFaciles = [];\n\n      const eleves = document.querySelectorAll(&quot;.eleve&quot;);\n      eleves[index].style.display = &quot;block&quot;;\n\n      const sectionsReponse = document.querySelectorAll(&quot;.sectionReponse&quot;);\n\n      function montrerNomPrenom() {\n        sectionsReponse[index].style.display = &quot;block&quot;;\n        show = true;\n      }\n\n      function eleveSuivant() {\n\t\tdo {\n          sectionsReponse[index].style.display = &quot;none&quot;;\n          eleves[index].style.display = &quot;none&quot;;\n          index = (index + 1) % eleves.length;\n        } while (indexElevesFaciles.includes(index) &amp;&amp; index &lt; eleves.length);\n        eleves[index].style.display = &quot;block&quot;;\n      }\n      function difficile() {\n        show = false;\n        eleveSuivant();\n      }\n      function facile() {\n        show = false;\n        indexElevesFaciles.push(index);\n        if (indexElevesFaciles.length == eleves.length) {\n          end = true;\n          const footer = document.querySelector(&quot;footer&quot;);\n          eleves[index].style.display = &quot;none&quot;;\n          footer.style.display = &quot;flex&quot;;\n        } else {\n          eleveSuivant();\n        }\n      }\n      window.addEventListener(&quot;keydown&quot;, function (event) {\n        if (event.key === &quot;Enter&quot; &amp;&amp; !end) {\n          montrerNomPrenom();\n        }\n        const isNoPhoto = eleves[index].querySelector(&quot;.noPhotos&quot;) !== null;\n\n        if (event.key === &quot;ArrowLeft&quot; &amp;&amp; (show || isNoPhoto)) {\n          difficile();\n        }\n        if (event.key === &quot;ArrowRight&quot; &amp;&amp; (show || isNoPhoto)) {\n          facile();\n        }\n      });\n    &lt;\/script&gt;&apos;,n+=&quot;&lt;/body&gt;&lt;/html&gt;&quot;}(o))}();">Apprendre les prénoms</a></p>
-<h2 id="afficher-le-trombinoscope-de-ses-élèves-sur-pronote-version-en-ligne">2/ Afficher le trombinoscope de ses élèves sur Pronote (version en ligne)</h2>
+<p>Affichez la barre de vos favoris et glisser-déposer le lien
+ci-dessous dans vos
+<span style='white-space:nowrap'>favoris&thinsp;:</span>
+<a href="javascript:!function(){const e=window.location.href;let n,o,t,s,i,l,r,c=!1;if(e.indexOf(&quot;pronote&quot;)&gt;-1&amp;&amp;(c=!0,n=document.body.querySelectorAll(&apos;div[role=&quot;main&quot;] img&apos;),t=e=&gt;e.alt.includes(&quot;Photo de&quot;),s=e=&gt;Array.from(e.classList).includes(&quot;ie-imgviewer&quot;),i=o.length&lt;3,l=e=&gt;e.dataset.src,r=e=&gt;{const n=l(e).split(&quot;?&quot;)[0],o=n.lastIndexOf(&quot;/&quot;),t=decodeURIComponent(n.substring(o+1).replace(&quot;.jpg&quot;,&quot;&quot;)),s=t.search(/[a-z&agrave;-&yuml;]/),i=t.substring(s-1),r=t.substring(0,s-1).replaceAll(&quot;_&quot;,&quot; &quot;);return i.replaceAll(&quot;_&quot;,&quot; &quot;)+&quot; &quot;+r}),(e.indexOf(&quot;moodle&quot;)&gt;-1||e.indexOf(&quot;magistere&quot;)&gt;-1)&amp;&amp;(c=!0,n=document.body.querySelectorAll(&quot;th img&quot;),t=e=&gt;e.classList.contains(&quot;userpicture&quot;),s=e=&gt;!0,i=!0,l=e=&gt;e.src,r=e=&gt;e.parentNode.textContent),0==c)return void alert(&quot;Attention, cet outil ne fonctionne que sur certains sites : \nsur Pronote, Ouvrez Pronote en ligne, puis allez dans Mes donn&eacute;es / Classes/&eacute;l&egrave;ves / Trombinoscope&quot;);if(o=Array.from(n),!i)return void alert(&quot;Pour que l&apos;outil fonctionne, il faut aller dans Mes donn&eacute;es / Classes/&eacute;l&egrave;ves / Trombinoscope, puis s&eacute;lectionner une classe&quot;);window.confirm(&apos;Apprendre les pr&eacute;noms :\n- Par ordre al&eacute;atoire &rarr; clic sur OK (ou touche &quot;Enter&quot;).\n- Par ordre alphab&eacute;tique &rarr; clic sur Annuler (ou touche &quot;Esc&quot;)\n\nAttention, pour que l\&apos;outil fonctionne, il faut que toutes les photos des &eacute;l&egrave;ves soient visibles sur la page. \n\nVotre navigateur bloquera l\&apos;outil si vous mettez trop de temps &agrave; cliquer : relancez-le ou autorisez les pop-up&apos;)&amp;&amp;function(e){for(let n=e.length-1;n&gt;0;n--){const o=Math.floor(Math.random()*(n+1));[e[n],e[o]]=[e[o],e[n]]}}(o);!function(e){var n=window.open();n&amp;&amp;!n.closed&amp;&amp;function(e,n){e.document.open(),e.document.write(n),e.document.close()}(n,e)}(function(e){for(var n=&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Images de la Page&lt;/title&gt;&lt;/head&gt;&lt;style&gt;div{margin-top:10px; text-align:center;} section, footer, div {display:none;} button {margin:10px;} footer {display: none; justify-content: center; align-items: center; height: 50%; font-size: 20px;} .noPhotos{display:block!important;} b{display:block;margin-top:2em;}&lt;/style&gt;&lt;body&gt;&quot;,o=0;o&lt;e.length;o++){const i=e[o];if(t(i)){const e=l(i),o=r(i);n+=&apos;&lt;div class=&quot;eleve&quot;&gt;&apos;,n+=&apos;&lt;img src=&quot;&apos;+e+&apos;&quot; /&gt;&lt;br&gt;&apos;,s(i)?(n+=&apos;&lt;button onclick=&quot;montrerNomPrenom()&quot;&gt;Montrer la r&eacute;ponse&lt;/button&gt;&apos;,n+=&apos;&lt;section class=&quot;sectionReponse&quot;&gt;&apos;+o+&quot;&lt;br&gt;&quot;):n+=&apos;&lt;section class=&quot;sectionReponse noPhotos&quot;&gt;&lt;b&gt;Pas de photo disponible !&lt;/b&gt;&lt;br&gt;&apos;+o+&quot;&lt;br&gt;&quot;,n+=&apos;&lt;button onclick=&quot;difficile()&quot;&gt;Difficile&lt;/button&gt;&apos;,n+=&apos;&lt;button onclick=&quot;facile()&quot;&gt;Facile&lt;/button&gt;&lt;/section&gt;&lt;/div&gt;&apos;}}return n+=&quot;&lt;footer&gt;Bravo, vous connaissez tous les &eacute;l&egrave;ves de votre classe !&lt;/footer&gt;&quot;,n+=&apos;&lt;script&gt;\n      let end = false;\n      let index = 0;\n      let show = false;\n      let indexElevesFaciles = [];\n\n      const eleves = document.querySelectorAll(&quot;.eleve&quot;);\n      eleves[index].style.display = &quot;block&quot;;\n\n      const sectionsReponse = document.querySelectorAll(&quot;.sectionReponse&quot;);\n\n      function montrerNomPrenom() {\n        sectionsReponse[index].style.display = &quot;block&quot;;\n        show = true;\n      }\n\n      function eleveSuivant() {\n\t\tdo {\n          sectionsReponse[index].style.display = &quot;none&quot;;\n          eleves[index].style.display = &quot;none&quot;;\n          index = (index + 1) % eleves.length;\n        } while (indexElevesFaciles.includes(index) &amp;&amp; index &lt; eleves.length);\n        eleves[index].style.display = &quot;block&quot;;\n      }\n      function difficile() {\n        show = false;\n        eleveSuivant();\n      }\n      function facile() {\n        show = false;\n        indexElevesFaciles.push(index);\n        if (indexElevesFaciles.length == eleves.length) {\n          end = true;\n          const footer = document.querySelector(&quot;footer&quot;);\n          eleves[index].style.display = &quot;none&quot;;\n          footer.style.display = &quot;flex&quot;;\n        } else {\n          eleveSuivant();\n        }\n      }\n      window.addEventListener(&quot;keydown&quot;, function (event) {\n        if (event.key === &quot;Enter&quot; &amp;&amp; !end) {\n          montrerNomPrenom();\n        }\n        const isNoPhoto = eleves[index].querySelector(&quot;.noPhotos&quot;) !== null;\n\n        if (event.key === &quot;ArrowLeft&quot; &amp;&amp; (show || isNoPhoto)) {\n          difficile();\n        }\n        if (event.key === &quot;ArrowRight&quot; &amp;&amp; (show || isNoPhoto)) {\n          facile();\n        }\n      });\n    &lt;\/script&gt;&apos;,n+=&quot;&lt;/body&gt;&lt;/html&gt;&quot;}(o))}();">Apprendre
+les prénoms</a></p>
+<h2
+id="afficher-le-trombinoscope-de-ses-élèves-sur-pronote-version-en-ligne">2/
+Afficher le trombinoscope de ses élèves sur Pronote (version en
+ligne)</h2>
 <p>Cliquez sur “Mes données” / “Classes/élèves” / “Trombinoscope”</p>
-<p><img src="https://minio.apps.education.fr/codimd-prod/uploads/upload_1ce9929a1de523fb19b9060d077a3275.png" /></p>
-<p>Choisissez la classe et cliquez sur votre nouveau favori “Apprendre les prénoms”</p>
+<p><img
+src="https://minio.apps.education.fr/codimd-prod/uploads/upload_1ce9929a1de523fb19b9060d077a3275.png" /></p>
+<p>Choisissez la classe et cliquez sur votre nouveau favori “Apprendre
+les prénoms”</p>
 <h2 id="apprendre-les-prénoms">3/ Apprendre les prénoms</h2>
-<h3 id="choisir-lordre-de-présentation">Choisir l’ordre de présentation</h3>
-<p>L’outil ouvre un popup et vous propose d’apprendre soit les prénoms dans l’ordre aléatoire (ordre par <span style='white-space:nowrap'>défaut&thinsp;:</span> cliquez sur OK ou appuyez sur Entrée), soit dans l’ordre alphabétique (cliquez sur Annuler ou appuyez sur Esc).</p>
+<h3 id="choisir-lordre-de-présentation">Choisir l’ordre de
+présentation</h3>
+<p>L’outil ouvre un popup et vous propose d’apprendre soit les prénoms
+dans l’ordre aléatoire (ordre par
+<span style='white-space:nowrap'>défaut&thinsp;:</span> cliquez sur OK
+ou appuyez sur Entrée), soit dans l’ordre alphabétique (cliquez sur
+Annuler ou appuyez sur Esc).</p>
 <pre class="warning"><code>Attention : pour que l&#39;outil fonctionne, il faut qu&#39;on puisse voir toutes les photos des élèves sur l&#39;écran, et si vous mettez du temps à faire votre choix de l&#39;ordre de présentation, votre navigateur va probablement bloquer l&#39;ouverture de la page des photos (il faudra alors soit relancer l&#39;outil et répondre plus vite, soit accepter les popups).</code></pre>
-<p><img src="https://minio.apps.education.fr/codimd-prod/uploads/upload_cf1867318a5f5f5a8514ff50f56442f2.png" /></p>
-<h3 id="sentraîner-à-mémoriser-les-prénoms">S’entraîner à mémoriser les prénoms</h3>
+<p><img
+src="https://minio.apps.education.fr/codimd-prod/uploads/upload_cf1867318a5f5f5a8514ff50f56442f2.png" /></p>
+<h3 id="sentraîner-à-mémoriser-les-prénoms">S’entraîner à mémoriser les
+prénoms</h3>
 <p>Une page s’ouvre et l’outil affiche une photo à la fois.</p>
-<p><img src="https://minio.apps.education.fr/codimd-prod/uploads/upload_60b95ece9dc0e029919628f7c3157861.png" /></p>
-<p>Quand vous pensez avoir retrouvé le prénom et le nom de l’élève, cliquez sur “Montrer la réponse”.</p>
+<p><img
+src="https://minio.apps.education.fr/codimd-prod/uploads/upload_60b95ece9dc0e029919628f7c3157861.png" /></p>
+<p>Quand vous pensez avoir retrouvé le prénom et le nom de l’élève,
+cliquez sur “Montrer la réponse”.</p>
 <ul>
-<li>Raccourci <span style='white-space:nowrap'>clavier&thinsp;:&thinsp;⏎</span> (touche “Entrée”).</li>
+<li>Raccourci
+<span style='white-space:nowrap'>clavier&thinsp;:&thinsp;⏎</span>
+(touche “Entrée”).</li>
 </ul>
-<p><img src="https://minio.apps.education.fr/codimd-prod/uploads/upload_b8c93f1e7b4242fcc8bc1ccbea4e8a27.png" /></p>
-<p>Si c’était facile, cliquez sur “Facile”. La photo de l’élève sera alors sortie de la liste.</p>
+<p><img
+src="https://minio.apps.education.fr/codimd-prod/uploads/upload_b8c93f1e7b4242fcc8bc1ccbea4e8a27.png" /></p>
+<p>Si c’était facile, cliquez sur “Facile”. La photo de l’élève sera
+alors sortie de la liste.</p>
 <ul>
-<li>Raccourci <span style='white-space:nowrap'>clavier&thinsp;:&thinsp;→</span> (flèche droite)</li>
+<li>Raccourci
+<span style='white-space:nowrap'>clavier&thinsp;:&thinsp;→</span>
+(flèche droite)</li>
 </ul>
-<p>Si c’était difficile, cliquez sur “Difficile”. La photo reste dans la liste.</p>
+<p>Si c’était difficile, cliquez sur “Difficile”. La photo reste dans la
+liste.</p>
 <ul>
-<li>Raccourci <span style='white-space:nowrap'>clavier&thinsp;:&thinsp;←</span> (flèche gauche)</li>
+<li>Raccourci
+<span style='white-space:nowrap'>clavier&thinsp;:&thinsp;←</span>
+(flèche gauche)</li>
 </ul>
-<p>Tant qu’il reste des photos dans la liste, l’outil parcourt la liste jusqu’à ce que vous ayez retrouvé tous les prénoms des élèves.</p>
-<p><img src="https://minio.apps.education.fr/codimd-prod/uploads/upload_8b511ff9285f81797dac501d4f99ac38.png" /></p>
+<p>Tant qu’il reste des photos dans la liste, l’outil parcourt la liste
+jusqu’à ce que vous ayez retrouvé tous les prénoms des élèves.</p>
+<p><img
+src="https://minio.apps.education.fr/codimd-prod/uploads/upload_8b511ff9285f81797dac501d4f99ac38.png" /></p>
 <h2 id="un-outil-libre-et-gratuit">Un outil libre et gratuit</h2>
-<p>Ce script est diffusé sous licence libre. N’hésitez pas à le modifier pour qu’il fonctionne avec une autre application. Les <a href="https://forge.apps.education.fr/eyssette/apprendre/-/blob/main/prenoms.js?ref_type=heads">sources</a> sont sur la Forge des Communs Numériques Éducatifs.</p>
-<p>Si vous avez un problème ou une demande d’évolution de l’outil, n’hésitez pas à me contacter, en utilisant de préférence les “<a href="https://forge.apps.education.fr/eyssette/apprendre/-/issues">tickets</a>”. Vous pouvez sinon me contacter via les <a href="https://eyssette.forge.apps.education.fr">réseaux sociaux</a>.</p> 
+<p>Ce script est diffusé sous licence libre. N’hésitez pas à le modifier
+pour qu’il fonctionne avec une autre application. Les <a
+href="https://forge.apps.education.fr/eyssette/apprendre/-/blob/main/prenoms.js?ref_type=heads">sources</a>
+sont sur la Forge des Communs Numériques Éducatifs.</p>
+<p>Si vous avez un problème ou une demande d’évolution de l’outil,
+n’hésitez pas à me contacter, en utilisant de préférence les “<a
+href="https://forge.apps.education.fr/eyssette/apprendre/-/issues">tickets</a>”.
+Vous pouvez sinon me contacter via les <a
+href="https://eyssette.forge.apps.education.fr">réseaux
+sociaux</a>.</p> 
 	</body>
 </html>
