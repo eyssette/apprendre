@@ -1,83 +1,107 @@
 (function () {
-	const url = window.location.href;
 	let images;
 	let imagesArray;
-	let isSourceOK = false;
 	let isPhotoStudent;
 	let isPhotoStudentOK;
 	let isConditionNumberPhotosOK;
 	let imageSource;
-	let nameStudentFromImageElement;
-	if (url.indexOf("pronote") > -1) {
-		isSourceOK = true;
-		images = document.body.querySelectorAll('div[role="main"] img');
-		isPhotoStudent = (image) => {
-			return image.alt.includes("Photo de");
-		};
-		isPhotoStudentOK = (image) => {
-			return Array.from(image.classList).includes("ie-imgviewer");
-		};
-		isConditionNumberPhotosOK = (imagesArray) => {
-			return imagesArray.length < 3 ? false : true;
-		};
-		imageSource = (image) => {
-			return image.dataset.src;
-		};
-		nameStudentFromImageElement = (image) => {
-			const imageSrc = imageSource(image);
-			const srcSansParametres = imageSrc.split("?")[0];
-			const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
-			const nomPrenom = decodeURIComponent(
-				srcSansParametres
-					.substring(indexDerniereBarreOblique + 1)
-					.replace(".jpg", "")
-			);
-			const indexPremiereMinuscule = nomPrenom.search(/[a-zà-ÿ]/);
-			const partiePrenom = nomPrenom.substring(indexPremiereMinuscule - 1);
-			const partieNom = nomPrenom.substring(0, indexPremiereMinuscule - 1);
-			const nom = partieNom.replaceAll("_", " ");
-			const prenom = partiePrenom.replaceAll("_", " ");
-			return prenom + " " + nom;
-		};
-	}
-	if (url.indexOf("moodle") > -1 || url.indexOf("magistere") > -1) {
-		isSourceOK = true;
-		images = document.body.querySelectorAll("th img");
-		isPhotoStudent = (image) => {
-			return image.classList.contains("userpicture");
-		};
-		isPhotoStudentOK = (image) => {
+	let studentNameFromImageElement;
+	function checkSource() {
+		const url = window.location.href;
+		if (url.indexOf("pronote") > -1) {
+			images = document.body.querySelectorAll('div[role="main"] img');
+			isPhotoStudent = (image) => {
+				return image.alt.includes("Photo de");
+			};
+			isPhotoStudentOK = (image) => {
+				return Array.from(image.classList).includes("ie-imgviewer");
+			};
+			isConditionNumberPhotosOK = (imagesArray) => {
+				return imagesArray.length < 3 ? false : true;
+			};
+			imageSource = (image) => {
+				return image.dataset.src;
+			};
+			studentNameFromImageElement = (image) => {
+				const imageSrc = imageSource(image);
+				const srcSansParametres = imageSrc.split("?")[0];
+				const indexDerniereBarreOblique = srcSansParametres.lastIndexOf("/");
+				const nomPrenom = decodeURIComponent(
+					srcSansParametres
+						.substring(indexDerniereBarreOblique + 1)
+						.replace(".jpg", "")
+				);
+				const indexPremiereMinuscule = nomPrenom.search(/[a-zà-ÿ]/);
+				const partiePrenom = nomPrenom.substring(indexPremiereMinuscule - 1);
+				const partieNom = nomPrenom.substring(0, indexPremiereMinuscule - 1);
+				const nom = partieNom.replaceAll("_", " ");
+				const prenom = partiePrenom.replaceAll("_", " ");
+				return prenom + " " + nom;
+			};
 			return true;
-		};
-		isConditionNumberPhotosOK = (imagesArray) => {
+		}
+		if (url.indexOf("moodle") > -1 || url.indexOf("magistere") > -1) {
+			images = document.body.querySelectorAll("th img");
+			isPhotoStudent = (image) => {
+				return image.classList.contains("userpicture");
+			};
+			isPhotoStudentOK = (image) => {
+				return true;
+			};
+			isConditionNumberPhotosOK = (imagesArray) => {
+				return true;
+			};
+			imageSource = (image) => {
+				return image.src;
+			};
+			studentNameFromImageElement = (image) => {
+				return image.parentNode.textContent;
+			};
 			return true;
-		};
-		imageSource = (image) => {
-			return image.src;
-		};
-		nameStudentFromImageElement = (image) => {
-			return image.parentNode.textContent;
-		};
-	}
-	if (url.indexOf("ecoledirecte") > -1) {
-		isSourceOK = true;
-		images = document.body.querySelectorAll(".panel-eleve img");
-		isPhotoStudent = (image) => {
-			return image.alt.includes("élève");
-		};
-		isPhotoStudentOK = (image) => {
-			return image.src.includes("eleve") ? false : true;
-		};
-		isConditionNumberPhotosOK = (imagesArray) => {
+		}
+		if (url.indexOf("ecoledirecte") > -1) {
+			images = document.body.querySelectorAll(".panel-eleve img");
+			isPhotoStudent = (image) => {
+				return image.alt.includes("élève");
+			};
+			isPhotoStudentOK = (image) => {
+				return image.src.includes("eleve") ? false : true;
+			};
+			isConditionNumberPhotosOK = (imagesArray) => {
+				return true;
+			};
+			imageSource = (image) => {
+				return image.src;
+			};
+			studentNameFromImageElement = (image) => {
+				return image.parentNode.querySelector("p").textContent;
+			};
 			return true;
-		};
-		imageSource = (image) => {
-			return image.src;
-		};
-		nameStudentFromImageElement = (image) => {
-			return image.parentNode.querySelector("p").textContent;
-		};
+		}
+		if (document.body.classList.contains("apprendre-prenoms")) {
+			images = document.body.querySelectorAll("#image-list img");
+			isPhotoStudent = (image) => {
+				return true;
+			};
+			isPhotoStudentOK = (image) => {
+				return true;
+			};
+			isConditionNumberPhotosOK = (imagesArray) => {
+				return true;
+			};
+			imageSource = (image) => {
+				return image.src;
+			};
+			studentNameFromImageElement = (image) => {
+				return image.parentNode.querySelector("span[contenteditable]")
+					.textContent;
+			};
+			return true;
+		}
+		return false;
 	}
+
+	const isSourceOK = checkSource();
 
 	if (isSourceOK == false) {
 		alert(
@@ -102,18 +126,18 @@
 			const image = imgArray[i];
 			if (isPhotoStudent(image)) {
 				const imageSrc = imageSource(image);
-				const nameStudent = nameStudentFromImageElement(image);
+				const studentName = studentNameFromImageElement(image);
 				htmlContent += '<div class="eleve">';
 				htmlContent += '<img src="' + imageSrc + '" /><br>';
 				if (isPhotoStudentOK(image)) {
 					htmlContent +=
 						'<button onclick="montrerNomPrenom()">Montrer la réponse</button>';
 					htmlContent +=
-						'<section class="sectionReponse">' + nameStudent + "<br>";
+						'<section class="sectionReponse">' + studentName + "<br>";
 				} else {
 					htmlContent +=
 						'<section class="sectionReponse noPhotos"><b>Pas de photo disponible !</b><br>' +
-						nameStudent +
+						studentName +
 						"<br>";
 				}
 				htmlContent += '<button onclick="difficile()">Difficile</button>';

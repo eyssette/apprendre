@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Apprendre les prénoms</title>
+	<style>
+		header {
+			text-align: center;
+			margin-bottom: 2em;
+		}
+
+		header div {
+			display: flex;
+			justify-content: center;
+		}
+
+		header ol {
+			text-align: left;
+		}
+
+		.drop-zone {
+			width: 100%;
+			height: 200px;
+			border: 2px dashed #ccc;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		.image-list {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		.image-list li {
+			margin: 10px 0;
+			display: flex;
+			align-items: center;
+		}
+
+		img {
+			max-width: 100px;
+			margin-right: 10px;
+		}
+
+		.remove-btn {
+			margin-left: 10px;
+			cursor: pointer;
+			color: red;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body class="apprendre-prenoms">
+	<header>
+		<h1>Apprendre les prénoms</h1>
+		<p>Cet outil permet de créer une page HTML avec les photos de vos élèves, afin de pouvoir utiliser le bookmarklet
+			“Apprendre les prénoms”</p>
+		<div>
+			<ol>
+				<li>Récupérez les photos de vos élèves et nommez chaque fichier avec le nom et prénom de l'élève</li>
+				<li>Déposez les fichiers dans la zone de dépôt ci-dessous</li>
+				<li>Pour faire des modifications : cliquez sur le nom d'un élève pour le modifier ou sur la croix pour l'enlever de la liste</li>
+				<li>Enregistrez la page : vous pouvez maintenant ouvrir cette page et utiliser le bookmarklet</li>
+			</ol>
+		</div>
+	</header>
+	<div class="drop-zone" id="drop-zone">Déposez vos images ici</div>
+	<ul class="image-list" id="image-list"></ul>
+
+	<script>
+		const dropZone = document.getElementById('drop-zone');
+		const imageList = document.getElementById('image-list');
+
+		// Empêcher le comportement par défaut de la zone de dépôt (ouvrir le fichier)
+		['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+			dropZone.addEventListener(eventName, (e) => e.preventDefault());
+		});
+
+		// Changer visuellement la zone de dépôt lors du drag
+		['dragenter', 'dragover'].forEach(eventName => {
+			dropZone.addEventListener(eventName, () => dropZone.style.borderColor = '#000');
+		});
+
+		['dragleave', 'drop'].forEach(eventName => {
+			dropZone.addEventListener(eventName, () => dropZone.style.borderColor = '#ccc');
+		});
+
+		// Fonction pour traiter les fichiers déposés
+		dropZone.addEventListener('drop', (e) => {
+			const files = Array.from(e.dataTransfer.files);
+
+			files.forEach(file => {
+				// Vérifier si c'est un fichier image
+				if (file.type.startsWith('image/')) {
+					const reader = new FileReader();
+
+					reader.onload = (event) => {
+						const li = document.createElement('li');
+						const img = document.createElement('img');
+						img.src = event.target.result;
+
+						const fileName = document.createElement('span');
+						fileName.textContent = file.name;
+						fileName.contentEditable = true;
+
+						const removeBtn = document.createElement('span');
+						removeBtn.textContent = '✖';
+						removeBtn.classList.add('remove-btn');
+
+						// Ajouter un événement de clic pour supprimer l'élément
+						removeBtn.addEventListener('click', () => {
+							li.remove();
+						});
+
+						li.appendChild(img);
+						li.appendChild(fileName);
+						li.appendChild(removeBtn);
+
+						imageList.appendChild(li);
+					};
+
+					// Lire le fichier image
+					reader.readAsDataURL(file);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
